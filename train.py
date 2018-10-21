@@ -28,10 +28,10 @@ class DataGenerator(Sequence):
 
         # for x,y in temp:
         #     print(x.shape, y.shape)
-        u, v = np.array([x[0] for x in temp]), np.array([x[1] for x in temp])
+        u, v = [x[0] for x in temp], [x[1] for x in temp]
 
-        print(u[0].shape, v.shape)
-        return u,v
+        return np.array(np.stack(u, axis=0), dtype=np.uint8), \
+               np.array(np.stack(v, axis=0), dtype=np.uint8)
 
 
 model = Unet(backbone_name='resnet50', encoder_weights='imagenet', freeze_encoder=True)
