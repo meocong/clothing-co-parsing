@@ -26,9 +26,9 @@ class DataGenerator(Sequence):
         #     for file_name in batch_x]), np.array(batch_y)
         temp = [augment(cv2.imread(x),cv2.imread(y,0)) for (x,y) in zip(batch_x, batch_y)]
 
-        for x,y in temp:
-            print(x.shape, y.shape)
-        return np.array([x[0] for x in temp], dtype=np.uint8), np.array([x[1] for x in temp], dtype=np.uint8)
+        # for x,y in temp:
+        #     print(x.shape, y.shape)
+        return [x[0] for x in temp], [x[1] for x in temp]
 
 
 model = Unet(backbone_name='resnet50', encoder_weights='imagenet', freeze_encoder=True)
