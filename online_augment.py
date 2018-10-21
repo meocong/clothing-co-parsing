@@ -47,7 +47,7 @@ def augment(image, mask):
     mask_padded = augmented['mask']
 
     aug = Compose([
-        OneOf([RandomSizedCrop(p=0.5, min_max_height=(original_height/4, original_height/2),
+        OneOf([RandomSizedCrop(p=0.5, min_max_height=(int(original_height/4), int(original_height/2)),
                               height=original_height, width=original_width),
                PadIfNeeded(min_height=original_height,
                            min_width=original_width, p=0.5)], p=1),
