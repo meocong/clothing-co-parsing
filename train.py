@@ -28,7 +28,7 @@ class DataGenerator(Sequence):
         return np.array([x[0] for x in temp]), np.array([x[1] for x in temp])
 
 
-model = Unet(backbone_name='resnet34', encoder_weights='imagenet', freeze_encoder=True)
+model = Unet(backbone_name='resnet18', encoder_weights='imagenet', freeze_encoder=True)
 model.compile('Adam', 'binary_crossentropy', ['binary_accuracy'])
 
 mask_images = glob.glob("./mask")
