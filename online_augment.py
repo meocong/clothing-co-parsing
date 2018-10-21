@@ -77,8 +77,9 @@ def augment(image, mask):
     mask_v = augmented['mask']
     return image_v, mask_v
 
-image = cv2.imread('photos/0001.jpg')
-mask = cv2.imread('mask/0001.jpg',0)
+if __name__ == "__main__":
+    image = cv2.imread('photos/0001.jpg')
+    mask = cv2.imread('mask/0001.jpg',0)
 
-image, mask = augment(image, mask)
-visualize(image, mask)
+    image, mask = augment(image, mask)
+    visualize(image, mask)
