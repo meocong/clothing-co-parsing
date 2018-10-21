@@ -14,7 +14,7 @@ class DataGenerator(Sequence):
         self.batch_size = batch_size
 
     def __len__(self):
-        return np.ceil(len(self.image_filenames) / float(self.batch_size))
+        return int(len(self.image_filenames) / self.batch_size)
 
     def __getitem__(self, idx):
         batch_x = self.image_filenames[
