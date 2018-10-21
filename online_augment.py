@@ -39,7 +39,7 @@ def visualize(image, mask, original_image=None, original_mask=None):
 
 def augment(image, mask):
     original_height, original_width = image.shape[:2]
-    aug = PadIfNeeded(p=1, min_height=1000, min_width=800)
+    aug = PadIfNeeded(p=1, min_height=128, min_width=128)
     augmented = aug(image=image, mask=mask)
 
     image_padded = augmented['image']
@@ -74,7 +74,13 @@ def augment(image, mask):
     augmented = aug(image=image_padded, mask=mask_padded)
     image_v = augmented['image']
     mask_v = augmented['mask']
-    return image_v, mask_v
+
+    aug = PadIfNeeded(p=1, min_height=900, min_width=600)
+    augmented = aug(image=image_v, mask=mask_v)
+
+    image_padded = augmented['image']
+    mask_padded = augmented['mask']
+    return image_padded, mask_padded
 
 if __name__ == "__main__":
     image = cv2.imread('photos/0001.jpg')
