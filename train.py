@@ -5,7 +5,6 @@ import numpy as np
 from online_augment import augment
 import glob
 import cv2
-from skimage.io import imread
 from sklearn.model_selection import train_test_split
 
 class DataGenerator(Sequence):
@@ -25,7 +24,7 @@ class DataGenerator(Sequence):
         # return np.array([
         #     resize(imread(file_name), (200, 200))
         #     for file_name in batch_x]), np.array(batch_y)
-        temp = [augment(x,y) for (x,y) in zip(batch_x, batch_y)]
+        temp = [augment(cv2.imread(x),cv2.imread(y)) for (x,y) in zip(batch_x, batch_y)]
         return np.array([x[0] for x in temp], dtype=np.uint8), np.array([x[1] for x in temp], dtype=np.uint8)
 
 
@@ -33,8 +32,8 @@ model = Unet(backbone_name='resnet50', encoder_weights='imagenet', freeze_encode
 model.compile('Adam', 'binary_crossentropy', ['binary_accuracy'])
 
 mask_images = glob.glob("./mask/*.jpg")
-X = [cv2.imread(x.replace("mask","photos")) for x in mask_images]
-y = [cv2.imread(x) for x in mask_images]
+X = [x.replace("mask","photos") for x in mask_images]
+y = [x for x in mask_images]
 
 
 X_train, X_val, Y_train, Y_val = train_test_split(X, y, test_size = 0.1, random_state=42)
