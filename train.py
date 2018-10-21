@@ -30,7 +30,7 @@ class DataGenerator(Sequence):
         #     print(x.shape, y.shape)
         u, v = np.array([x[0] for x in temp]), np.array([x[1] for x in temp])
 
-        print(u.shape, v.shape)
+        print(u[0].shape, v.shape)
         return u,v
 
 
