@@ -1,4 +1,4 @@
-from segmentation_models import Unet
+from segmentation_models import Unet, FPN
 from segmentation_models.utils import set_trainable
 from keras.utils import Sequence
 import numpy as np
@@ -34,7 +34,7 @@ class DataGenerator(Sequence):
                np.array(np.stack(v, axis=0), dtype=np.uint8).reshape(self.batch_size, 1000, 1000, 1)
 
 
-model = Unet(backbone_name='resnet50', encoder_weights='imagenet', freeze_encoder=True)
+model = FPN(backbone_name='resnet50', encoder_weights='imagenet', freeze_encoder=True)
 model.compile('Adam', 'binary_crossentropy', ['binary_accuracy'])
 
 mask_images = glob.glob("./mask/*.jpg")
@@ -45,7 +45,7 @@ y = [x for x in mask_images]
 X_train, X_val, Y_train, Y_val = train_test_split(X, y, test_size = 0.1, random_state=42)
 n_train = len(X_train)
 n_val = len(X_val)
-batch_size = 8
+batch_size = 1
 my_training_batch_generator = DataGenerator(X_train, Y_train, batch_size)
 my_validation_batch_generator = DataGenerator(X_val, Y_val, batch_size)
 

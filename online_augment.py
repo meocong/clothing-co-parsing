@@ -75,12 +75,13 @@ def augment(image, mask):
     image_v = augmented['image']
     mask_v = augmented['mask']
 
-    aug = PadIfNeeded(p=1, min_height=1000, min_width=1000)
-    augmented = aug(image=image_v, mask=mask_v)
-
-    image_padded = augmented['image']
-    mask_padded = augmented['mask']
-    return image_padded, mask_padded
+    return image_v, mask_v
+    # aug = PadIfNeeded(p=1, min_height=1000, min_width=1000)
+    # augmented = aug(image=image_v, mask=mask_v)
+    #
+    # image_padded = augmented['image']
+    # mask_padded = augmented['mask']
+    # return image_padded, mask_padded
 
 if __name__ == "__main__":
     image = cv2.imread('photos/0001.jpg')
