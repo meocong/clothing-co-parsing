@@ -39,7 +39,7 @@ def visualize(image, mask, original_image=None, original_mask=None):
 
 def augment(image, mask):
     original_height, original_width = image.shape[:2]
-
+    print(image.shape, mask.shape)
     aug = PadIfNeeded(p=1, min_height=128, min_width=128)
     augmented = aug(image=image, mask=mask)
 
