@@ -25,6 +25,9 @@ class DataGenerator(Sequence):
         #     resize(imread(file_name), (200, 200))
         #     for file_name in batch_x]), np.array(batch_y)
         temp = [augment(cv2.imread(x),cv2.imread(y,0)) for (x,y) in zip(batch_x, batch_y)]
+
+        for x,y in temp:
+            print(x.shape, y.shape)
         return np.array([x[0] for x in temp], dtype=np.uint8), np.array([x[1] for x in temp], dtype=np.uint8)
 
 
