@@ -37,7 +37,7 @@ y = [cv2.imread(x) for x in mask_images]
 
 
 X_train, X_val, Y_train, Y_val = train_test_split(X, y, test_size = 0.1, random_state=42)
-batch_size = 64
+batch_size = 24
 my_training_batch_generator = DataGenerator(X_train, Y_train, batch_size)
 my_validation_batch_generator = DataGenerator(X_val, Y_val, batch_size)
 
