@@ -32,7 +32,7 @@ class DataGenerator(Sequence):
 model = Unet(backbone_name='resnet50', encoder_weights='imagenet', freeze_encoder=True)
 model.compile('Adam', 'binary_crossentropy', ['binary_accuracy'])
 
-mask_images = glob.glob("./mask")
+mask_images = glob.glob("./mask/*.jpg")
 X = [cv2.imread(x.replace("mask","photos")) for x in mask_images]
 y = [cv2.imread(x) for x in mask_images]
 
