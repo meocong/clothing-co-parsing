@@ -41,7 +41,7 @@ df = pd.DataFrame(data={"name":[x[0] for x in result],
                "g": [x[2] for x in result],
                "b": [x[3] for x in result]})
 
-df.to_csv("class_dict.csv", header=True,columns=["name","r","g","b"], index=False)
+df.to_csv("original_data/class_dict.csv", header=True,columns=["name","r","g","b"], index=False)
 
 for x in pixel_level_files:
     mat = scipy.io.loadmat(x)
