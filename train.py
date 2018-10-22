@@ -31,7 +31,7 @@ class DataGenerator(Sequence):
         u, v = [x[0] for x in temp], [x[1] for x in temp]
 
         return np.array(np.stack(u, axis=0), dtype=np.uint8), \
-               np.array(np.stack(v, axis=0), dtype=np.uint8).reshape(self.batch_size, 1000, 1000, 1)
+               np.array(np.stack(v, axis=0), dtype=np.uint8)
 
 
 model = FPN(backbone_name='resnet50', encoder_weights='imagenet', freeze_encoder=True)
