@@ -35,7 +35,7 @@ class DataGenerator(Sequence):
         # for x,y in temp:
         #     print(x.shape, y.shape)
         u, v = [x[0] for x in temp], [self.preprocess_binary_label(x[1], classes=59) for x in temp]
-
+        print(np.array(np.stack(u, axis=0), dtype=np.uint8).shape)
         return np.array(np.stack(u, axis=0), dtype=np.uint8), \
                np.array(np.stack(v, axis=0), dtype=np.uint8)
 
