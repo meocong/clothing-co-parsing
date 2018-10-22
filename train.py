@@ -40,7 +40,7 @@ class DataGenerator(Sequence):
                np.array(np.stack(v, axis=0), dtype=np.uint8)
 
 
-model = Unet(backbone_name='resnet50', encoder_weights='imagenet', freeze_encoder=True, classes=59, decoder_block_type='transpose')
+model = Unet(backbone_name='vgg16', encoder_weights='imagenet', freeze_encoder=True, classes=59, decoder_block_type='transpose')
 model.compile('Adam', 'binary_crossentropy', ['binary_accuracy'])
 
 mask_images = glob.glob("./mask/*.jpg")
