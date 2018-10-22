@@ -58,13 +58,13 @@ my_validation_batch_generator = DataGenerator(X_val, Y_val, batch_size)
 print(n_train, int(n_train / batch_size))
 print(n_val, int(n_val / batch_size))
 # pretrain model decoder
-model.fit_generator(generator=my_training_batch_generator,
-                    epochs=2,
-                    steps_per_epoch = int(n_train / batch_size),
-                    validation_data=my_validation_batch_generator,
-                    verbose=1,
-                    validation_steps= int(n_val / batch_size))
-# model.fit(X, y, epochs=2)
+# model.fit_generator(generator=my_training_batch_generator,
+#                     epochs=2,
+#                     steps_per_epoch = int(n_train / batch_size),
+#                     validation_data=my_validation_batch_generator,
+#                     verbose=1,
+#                     validation_steps= int(n_val / batch_size))
+model.fit(X, y, epochs=2)
 model.save('./model/2ndepoch_model.h5')
 
 # release all layers for training
