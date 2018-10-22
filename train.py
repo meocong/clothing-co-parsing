@@ -15,6 +15,12 @@ class DataGenerator(Sequence):
     def __len__(self):
         return int(len(self.image_filenames) / self.batch_size)
 
+    def preprocess_binary_label(self, binary, classes):
+        res = np.ones((binary.shape[0], binary.shape[1], classes)) * 255
+        for x in range(classes):
+            res[np.where(binary == x)] = 0
+        return res
+    
     def __getitem__(self, idx):
         batch_x = self.image_filenames[
                   idx * self.batch_size:(idx + 1) * self.batch_size]
@@ -28,11 +34,11 @@ class DataGenerator(Sequence):
 
         # for x,y in temp:
         #     print(x.shape, y.shape)
-        u, v = [x[0] for x in temp], [x[1] for x in temp]
+        u, v = [x[0] for x in temp], [self.preprocess_binary_label(x[1], classes=59) for x in temp]
 
         v = np.array(np.stack(v, axis=0), dtype=np.uint8)
         return np.array(np.stack(u, axis=0), dtype=np.uint8), \
-               v.reshape(1, v.shape[1], v.shape[2], 1)
+               v.reshape(1, v.shape[1], v.shape[2], v.shape[3])
 
 
 model = Unet(backbone_name='resnet50', encoder_weights='imagenet', freeze_encoder=True, classes=59)
