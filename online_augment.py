@@ -75,11 +75,11 @@ def augment(image, mask):
     image_v = augmented['image']
     mask_v = augmented['mask']
 
-    aug = PadIfNeeded(p=1, min_height=1024, min_width=1024)
-    augmented = aug(image=image_v, mask=mask_v)
-
-    image_v = augmented['image']
-    mask_v = augmented['mask']
+    # aug = PadIfNeeded(p=1, min_height=1024, min_width=1024)
+    # augmented = aug(image=image_v, mask=mask_v)
+    #
+    # image_v = augmented['image']
+    # mask_v = augmented['mask']
 
     # image_v = cv2.resize(image_v, (64, 64))
     # mask_v = cv2.resize(image_v, (64, 64))
