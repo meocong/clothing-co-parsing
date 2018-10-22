@@ -35,7 +35,7 @@ class DataGenerator(Sequence):
                v.reshape(1, v.shape[1], v.shape[2], 1)
 
 
-model = Unet(backbone_name='resnet50', encoder_weights='imagenet', freeze_encoder=True)
+model = Unet(backbone_name='resnet50', encoder_weights='imagenet', freeze_encoder=True, classes=59)
 model.compile('Adam', 'binary_crossentropy', ['binary_accuracy'])
 
 mask_images = glob.glob("./mask/*.jpg")
