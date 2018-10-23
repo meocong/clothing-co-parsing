@@ -17,8 +17,8 @@ for mask in pixel_level_files:
     if (random.randint(0,100) < 5):
         cv2.imwrite("original_data/test/" + img_name, img)
         cv2.imwrite("original_data/val/" + img_name, img)
-        cv2.imwrite("original_data/test_labels/" + img_name.replace("png","_L.png"), imask)
-        cv2.imwrite("original_data/val_labels/" + img_name.replace("png","_L.png"), imask)
+        cv2.imwrite("original_data/test_labels/" + img_name.replace(".png","_L.png"), imask)
+        cv2.imwrite("original_data/val_labels/" + img_name.replace(".png","_L.png"), imask)
         # os.system("cp {0} {1}".format(photo, "original_data/test/" + img_name))
         # os.system("cp {0} {1}".format(photo, "original_data/val/" + img_name))
         #
@@ -29,5 +29,5 @@ for mask in pixel_level_files:
         # os.system("cp {0} {1}".format(mask, "original_data/train_labels/" + img_name.replace("png","_L.png")))
 
         cv2.imwrite("original_data/train/" + img_name, img)
-        cv2.imwrite("original_data/train_labels/" + img_name.replace("png", "_L.png"),imask)
+        cv2.imwrite("original_data/train_labels/" + img_name.replace(".png", "_L.png"),imask)
         pass

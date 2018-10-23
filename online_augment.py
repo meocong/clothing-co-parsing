@@ -32,7 +32,7 @@ from albumentations import (
 
 
 def visualize(image, mask, original_image=None, original_mask=None):
-    numpy_horizontal = np.hstack((image, cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)))
+    numpy_horizontal = np.hstack((image, mask))
     cv2.imshow("hor", numpy_horizontal)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -93,7 +93,7 @@ def augment(image, mask):
 
 if __name__ == "__main__":
     image = cv2.imread('photos/0001.jpg')
-    mask = cv2.imread('mask/0001.jpg',0)
+    mask = cv2.imread('real_mask/0001.png')
 
     image, mask = augment(image, mask)
     visualize(image, mask)
